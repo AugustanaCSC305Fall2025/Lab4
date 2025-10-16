@@ -1,5 +1,6 @@
 package edu.augustana.csc305.lab4.ui;
 
+import edu.augustana.csc305.lab4.serialization.GsonSaver;
 import edu.augustana.csc305.lab4.serialization.SerializableSaver;
 import edu.augustana.csc305.lab4.Student;
 import edu.augustana.csc305.lab4.serialization.StudentSaver;
@@ -17,7 +18,7 @@ public class RegistrationController {
      * Swap out different strategies for saving students by constructing
      * this data member with different StudentSaver instances.
      */
-    private final StudentSaver studentSaver = new SerializableSaver();
+    private final StudentSaver studentSaver = new GsonSaver();
 
     private final RegistrationModel model = new RegistrationModel();
     private final RegistrationView view = new RegistrationView();

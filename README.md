@@ -51,14 +51,59 @@ registration UI. Try adding students, saving your students to a file,
 clearing the list, and loading your students back from the file.
 
 
-## Switching to GSON
+## Switching to JSON
 
-The rest of the lab will look at using GSON to serialize students instead of 
-`Serializable`.
+The rest of the lab will look at using JSON to serialize students instead of 
+`Serializable` object streams. We will use GSON to serialize and deserialize
+JSON strings. (You can verify GSON is included as a project dependency in
+`pom.xml`.)
 
-To start, create a new class in the `serialization` package called `GsonSaver`
-which implements `StudentSaver`.
+To start, create a new class in the `serialization` package called `JsonSaver`
+which implements `StudentSaver`. In `RegistrationController`, change the
+`studentSaver` initialization to use `JsonSaver` instead of `SerializableSaver`.
 
+### Implementing `saveStudents`
+
+To implement `saveStudents(...)`, we will first convert our list of `Student`s to
+a JSON string. Create a new `Gson` object and call its `toJson(...)` method,
+passing in our list of `Student`s. Store the result in a `String` called `json`.
+(You can temporarily print this string to the console if you want to verify
+it is getting generated correctly before continuing.)
+
+After you have your `json` string, write it out to the `loadPath` given as a
+method parameter. The easiest way to accomplish this is with a `PrintWriter`:
+
+```java
+try (PrintWriter out = new PrintWriter(savePath)) {
+    out.println(json);
+}
+```
+
+Try adding several students and saving the file to disk. If you open the file you
+saved, you should see human-readable JSON containing the student information. Compare
+this to a file written using the `SerializableSaver`, which is not human-readable.
+
+### Implementing `loadStudents`
+
+To implement `loadStudents`, again use a `Gson` object, but this time call `fromJson(...)`.
+
+You will need to pass the `fromJson` method two arguments: a reader to provide the JSON and the
+type to deserialize into. For the former argument, create a `new FileReader(loadPath)`.
+For the latter argument, we have a couple of options. One is to create a GSON `TypeToken`
+representing an `ArrayList` of students. The other is to deserialize into a `Student[]`
+and convert that to an `ArrayList`. We will use the second option:
+
+1. Pass `Student[].class` as the second argument to `fromJson`. Store the result of the
+   `fromJson` call as a `Student[]` called `students`.
+2. Convert the students array into an `ArrayList` using the `Arrays` utility class:
+   `Arrays.asList(students)`. Return this `ArrayList`.
+
+### Test
+
+You should now be able to serialize and deserialize students to disk using JSON. Test this
+by adding students, saving the students, clearing the student list, then reloading your
+students from disk. Make sure you have remembered to switch `RegistrationController` to 
+use `JsonSaver`!
 
 ## Submission Instructions
 
