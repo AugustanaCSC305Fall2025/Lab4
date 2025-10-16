@@ -22,7 +22,7 @@ directory contains the following:
 * `src`: the directory where the source code lives.
     * `src/main/java/module-info.java`: a JavaFX configuration file
       describing JavaFX-specific module dependencies and exports.
-    * `src/main/java/edu/augustana/csc305/lab3`: the Java source
+    * `src/main/java/edu/augustana/csc305/lab4`: the Java source
       files for this lab.
 
 The source files consist of the following:
