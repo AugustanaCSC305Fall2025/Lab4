@@ -18,7 +18,7 @@ public class RegistrationController {
      * Swap out different strategies for saving students by constructing
      * this data member with different StudentSaver instances.
      */
-    private final StudentSaver studentSaver = new GsonSaver();
+    private final StudentSaver studentSaver = new SerializableSaver();
 
     private final RegistrationModel model = new RegistrationModel();
     private final RegistrationView view = new RegistrationView();
