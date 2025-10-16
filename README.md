@@ -107,6 +107,4 @@ use `JsonSaver`!
 
 ## Submission Instructions
 
-When you are finished, upload all of your model, view, and controller classes to Moodle.
-Place them in a single zip or tar file if you know how to do that, otherwise you may
-upload the files individually.
+When you are finished, upload your `JsonSaver.java` file to Moodle.
