@@ -1,6 +1,5 @@
 package edu.augustana.csc305.lab4.ui;
 
-import edu.augustana.csc305.lab4.serialization.GsonSaver;
 import edu.augustana.csc305.lab4.serialization.SerializableSaver;
 import edu.augustana.csc305.lab4.Student;
 import edu.augustana.csc305.lab4.serialization.StudentSaver;
@@ -9,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationController {
